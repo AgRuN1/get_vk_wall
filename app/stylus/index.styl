@@ -1,0 +1,50 @@
+.slide.ng-enter, .slide.ng-move {
+  transition: all 0.5s linear;
+  opacity: 0;
+}
+
+/*
+ The ng-enter-active and ng-move-active
+ are where the transition destination properties
+ are set so that the animation knows what to
+ animate.
+*/
+.slide.ng-enter.ng-enter-active,
+.slide.ng-move.ng-move-active {
+  opacity: 1;
+}
+
+/*
+  We're using CSS keyframe animations for when
+  the leave event is triggered for the element
+  that has the .repeated-item class
+*/
+.slide.ng-leave {
+  animation: 0.5s my_animation;
+}
+
+@keyframes my_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+li
+    display block
+a
+    color green
+    &:hover
+        text-decoration none
+.to-top
+    position fixed
+    right 5px
+    bottom 30px
+    text-align center
+    display none
+    opacity .6
+    color red
+    &:hover
+        opacity 1
+.content
+    margin-top 3%
+    
+    

@@ -1,0 +1,24 @@
+{
+  "name": "vksnif",
+  "description": "Sniffer for users wall in Vkontakte",
+  "main": "index.js",
+  "authors": [
+    "agrun"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "angular-animate": "1.5.8"
+  }
+}

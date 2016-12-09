@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="getWall">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+	<link rel="stylesheet" href="css/libs.css">
+	<link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/libs.js"></script>
+</head>
+<body ng-controller="getWallCtrl" id="maint">
+<div class="to-top">
+    <i class="fa fa-arrow-up fa-2x"></i>
+    <p>Наверх</p>
+</div>
+ <div class="container">
+  <h1 class="well">Данный сервис позволяет получить некоторое количество записей со стены пользователя социальной сети "Вконтакте".</h1>
+  <div class="row">
+   <div class="col-md-12 input-group input-group-lg" id="main">
+      <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+       <input class="form-control" type="text" placeholder="ID пользователя" id="id" autocomplete="off" autofocus>
+      <span class="input-group-addon"><i class="fa fa-list-ol fa-fw"></i></span>
+       <input class="form-control" type="text" placeholder="Количество записей" id="count" autocomplete="off">
+       <div class="input-group-btn">
+           <button class="btn btn-primary" ng-click="get()"><i class="fa fa-user fa-fw"></i> Получить записи</button>
+       </div>
+    </div>
+	</div>
+   <section class="content">
+    <ol ng-cloak>
+	    <li ng-repeat="post in list" class="well slide">
+	        <p ng-bind-html="sce.trustAsHtml(post.text)"></p>
+	            <div ng-repeat="attachment in post.attachments">
+	                <div attachment="{{attachment}}"></div>
+	            </div>
+	        <p ng-bind-html="sce.trustAsHtml(post.copy_history[0].text)"></p>
+	            <div ng-repeat="attachment in post.copy_history[0].attachments">
+	                <div attachment="{{attachment}}"></div>
+	            </div>
+	            <hr>
+	        <div class="col-md-12">
+                <p class="col-md-3 label label-primary"><i class="fa fa-heart"></i> {{post.likes.count}}</p>
+	            <p class="col-md-3 label label-primary col-md-offset-1"><i class="fa fa-share"></i> {{post.reposts.count}}</p>
+	            <p class="col-md-3 label label-primary col-md-offset-1"><i class="fa fa-comment"></i> {{post.comments.count}}</p>
+	        </div>
+	    </li>
+	</ol>
+   </section>
+    </div>
+	<script src="js/command.js"></script>
+</body>
+</html>
