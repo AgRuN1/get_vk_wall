@@ -6,7 +6,8 @@ const jslibs = [
     'app/libs/jquery/dist/jquery.min.js',
     'app/libs/angular/angular.min.js',
     'app/libs/bootstrap/dist/js/bootstrap.min.js',
-    'app/libs/angular-animate/angular-animate.min.js'
+    'app/libs/angular-animate/angular-animate.min.js',
+    'app/libs/moment/min/moment-with-locales.min.js'
 ];
 
 const csslibs = [

@@ -10,9 +10,20 @@ let server = http.createServer().listen(8080);
 let modify = (arr) => {
     return arr.map((item)=>{
        var text = item.text.replace(/\n/g,"<br>");
-       text = text.replace(/(?:(?:(?:https?|ftp|telnet):\/\/)?(?:[a-z0-9_-]{1,32}(?::[a-z0-9_-]{1,32})?@)?)?(?:(?:[a-z0-9-]{1,128}\.)+(?:ru|su|com|net|org|mil|edu|arpa|gov|biz|info|aero|inc|name|[a-z]{2})|(?!0)(?:(?!0[^.]|255)[0-9]{1,3}\.){3}(?!0|255)[0-9]{1,3})(?:\/[a-z0-9.,_@%&?+=\~/-]*)?(?:#[^ '\"&]*)?/ig,function(a,b){;return '<a href="'+a+'">'+a+'</a>'});
+       text = text.replace(/(?:(?:(?:https?|ftp|telnet):\/\/)?(?:[a-z0-9_-]{1,32}(?::[a-z0-9_-]{1,32})?@)?)?(?:(?:[a-z0-9-]{1,128}\.)+(?:ru|su|com|net|org|mil|edu|arpa|gov|biz|info|aero|inc|name|[a-z]{2})|(?!0)(?:(?!0[^.]|255)[0-9]{1,3}\.){3}(?!0|255)[0-9]{1,3})(?:\/[a-z0-9.,_@%&?+=\~/-]*)?(?:#[^ '\"&]*)?/ig,function(a,b){;return '<a href=\"'+a+'\" target=\"_blank\">'+a+'</a>'});
        
        item.text = text;
+//       if(item.attachments){
+//           item.attachments = item.attachments.map((attach)=>{
+//              if(attach.type == 'photo'){
+//                  attach.photo.text = attach.photo.text.replace(/(?:(?:(?:https?|ftp|telnet):\/\/)?(?:[a-z0-9_-]{1,32}(?::[a-z0-9_-]{1,32})?@)?)?(?:(?:[a-z0-9-]{1,128}\.)+(?:ru|su|com|net|org|mil|edu|arpa|gov|biz|info|aero|inc|name|[a-z]{2})|(?!0)(?:(?!0[^.]|255)[0-9]{1,3}\.){3}(?!0|255)[0-9]{1,3})(?:\/[a-z0-9.,_@%&?+=\~/-]*)?(?:#[^ '\"&]*)?/ig,function(a,b){;return '<a href=\"'+a+'\" target=\"_blank\">'+a+'</a>'});
+//                }
+//                   if(attach.type == 'link'){
+//                   attach.link.description = attach.link.description.replace(/(?:(?:(?:https?|ftp|telnet):\/\/)?(?:[a-z0-9_-]{1,32}(?::[a-z0-9_-]{1,32})?@)?)?(?:(?:[a-z0-9-]{1,128}\.)+(?:ru|su|com|net|org|mil|edu|arpa|gov|biz|info|aero|inc|name|[a-z]{2})|(?!0)(?:(?!0[^.]|255)[0-9]{1,3}\.){3}(?!0|255)[0-9]{1,3})(?:\/[a-z0-9.,_@%&?+=\~/-]*)?(?:#[^ '\"&]*)?/ig,function(a,b){;return '<a href=\"'+a+'\" target=\"_blank\">'+a+'</a>'});
+//                   attach.link.title = attach.link.title.replace(/(?:(?:(?:https?|ftp|telnet):\/\/)?(?:[a-z0-9_-]{1,32}(?::[a-z0-9_-]{1,32})?@)?)?(?:(?:[a-z0-9-]{1,128}\.)+(?:ru|su|com|net|org|mil|edu|arpa|gov|biz|info|aero|inc|name|[a-z]{2})|(?!0)(?:(?!0[^.]|255)[0-9]{1,3}\.){3}(?!0|255)[0-9]{1,3})(?:\/[a-z0-9.,_@%&?+=\~/-]*)?(?:#[^ '\"&]*)?/ig,function(a,b){;return '<a href=\"'+a+'\" target=\"_blank\">'+a+'</a>'});
+//           }
+//        });
+//       }
        return item;
     });
 }

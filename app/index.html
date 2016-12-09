@@ -29,14 +29,19 @@
    <section class="content">
     <ol ng-cloak>
 	    <li ng-repeat="post in list" class="well slide">
+            <p class="date">{{post.date | date}}</p>
 	        <p ng-bind-html="sce.trustAsHtml(post.text)"></p>
-	            <div ng-repeat="attachment in post.attachments">
-	                <div attachment="{{attachment}}"></div>
-	            </div>
+            <div class="text-center">
+	            <span ng-repeat="attachment in post.attachments">
+	                <span attachment="{{attachment}}"></span>
+	            </span>
+	       </div>
 	        <p ng-bind-html="sce.trustAsHtml(post.copy_history[0].text)"></p>
-	            <div ng-repeat="attachment in post.copy_history[0].attachments">
-	                <div attachment="{{attachment}}"></div>
-	            </div>
+            <div class="text-center">
+	            <span ng-repeat="attachment in post.copy_history[0].attachments">
+	                <span attachment="{{attachment}}"></span>
+	            </span>
+	           </div>
 	            <hr>
 	        <div class="col-md-12">
                 <p class="col-md-3 label label-primary"><i class="fa fa-heart"></i> {{post.likes.count}}</p>

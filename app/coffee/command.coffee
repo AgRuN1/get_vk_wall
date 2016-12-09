@@ -106,51 +106,62 @@ getWall.directive('attachment',()->
     return {
         link: (scope,element,attrs)->
             attach = JSON.parse(attrs.attachment)
-            console.log attach.type
             if(attach.type == 'link')
-                element.append('<div><p><a href="'+attach.link.url+'">'+attach.link.title+'</a></p><p>'+attach.link.description+'</p></div>')
+                element.append('<div><p><a href="'+attach.link.url+'" target="_blank">'+attach.link.title+'</a></p><p>'+attach.link.description+'</p></div>')
             if(attach.type == 'photo')
-                element.append('<img src="'+attach.photo.photo_604+'" width="350" height="350">')
+                photo = attach.photo.photo_807
+                if(!photo)
+                    photo = attach.photo.photo_604
+                element.append('
+                <div class="modal" id="'+attach.photo.access_key+'" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="modal-title text-center">'+attach.photo.text+'</div>
+                      </div>
+                      <div class="modal-body text-center">
+                        <img src="'+photo+'">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                ')
+                element.append('<img title="Открыть картинку" class="pict"src="'+attach.photo.photo_130+'"data-toggle="modal" data-target="#'+attach.photo.access_key+'">')
             if(attach.type == 'video')
-                element.append('<p>'+attach.video.title+'</p><p><img src="'+attach.video.photo_320+'"><p>')
+                photo = attach.video.photo_800
+                if(!photo)
+                    photo = attach.video.photo_320
+                element.append('
+                <div class="modal" id="'+attach.video.access_key+'" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="modal-title text-center">'+attach.video.title+'</div>
+                      </div>
+                      <div class="modal-body text-center">
+                        <p>'+attach.video.description+'</p>
+                        <img src="'+photo+'">
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                ')
+                element.append('<img title="Открыть картинку" class="pict" src="'+attach.video.photo_130+'"data-toggle="modal" data-target="#'+attach.video.access_key+'">')
+            if(attach.type == 'doc')
+                size = Math.floor(parseInt(attach.doc.size)/(1024*1024))
+                element.append('<p><a href="'+attach.doc.url+'" target="_blank">'+attach.doc.title+'</a> <span>'+size+' Mб</span></p>')
             null
         
     }
 )
-#
-#myModule.animation('.repeated-item', () ->
-#    return {
-#    enter : (element, done) ->
-#        element.css('opacity',0)
-#        jQuery(element).animate({
-#            opacity: 1
-#        }, done)
-#        return (isCancelled) ->
-#            if(isCancelled) 
-#                jQuery(element).stop()
-#    ,
-#    leave : (element, done) ->
-#        element.css('opacity', 1)
-#        jQuery(element).animate({
-#            opacity: 0
-#        }, done)
-#        return (isCancelled) ->
-#            if(isCancelled) 
-#                jQuery(element).stop()
-#    ,
-#    move : (element, done) ->
-#        element.css('opacity', 0)
-#        jQuery(element).animate({
-#            opacity: 1
-#        }, done)
-#        return (isCancelled) ->
-#            if(isCancelled) 
-#                jQuery(element).stop()
-#    ,
-#    addClass : (element, className, done)-> null ,
-#    removeClass : (element, className, done) ->null
-#    }
-#)
+
+getWall.filter('date',()->
+    return (str)->
+        moment.locale('ru')
+        return moment.unix(str).format("LL")
+)
 
 $(window).scroll(()->
     windowHeight = $(document).height() - $(window).height()

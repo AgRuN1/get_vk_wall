@@ -14,11 +14,6 @@
   opacity: 1;
 }
 
-/*
-  We're using CSS keyframe animations for when
-  the leave event is triggered for the element
-  that has the .repeated-item class
-*/
 .slide.ng-leave {
   animation: 0.5s my_animation;
 }
@@ -40,11 +35,24 @@ a
     bottom 30px
     text-align center
     display none
-    opacity .6
+    opacity .4
     color red
     &:hover
         opacity 1
 .content
     margin-top 3%
+.date
+    color blue
+    opacity .7
+    font-size 12px
+    font-family sans-serif
+    font-weight bolder
+.pict
+    
+    &:hover
+        transform: scale(1.2)
+        box-shadow -1px 2px 26px 1px rgba(64,65,71,1)
+.inline
+    display inline
     
     
